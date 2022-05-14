@@ -1,0 +1,28 @@
+/** Fonts **/
+$font-size-default: 16px;
+$font-family-primary: 'Open Sans', sans-serif;
+$font-family-secondary: 'PT Sans', sans-serif;
+$font-family-third: 'Galdeano', sans-serif;
+
+/** Colors **/
+$color-bg-primary: #fffaeb;
+$color-bg-secondary: #fffaeb;
+$color-bg-alt: #25057e;
+$color-bg-altmenu: #6e46cb;
+
+$color-fg-primary: #25057e;
+
+$color-black: #222222;
+$color-blue: #155166;
+$color-orange: #ed771d;
+$color-red: #d43b0c;
+$color-darkred : darkred;
+$color-violet: rgb(60,0,40);
+
+/** Decorations **/
+$border-radius-default: 0.5rem;
+$box-shadow-x: 2px;
+$box-shadow-y: 2px;
+$box-shadow-radius: 4px;
+$box-shadow-color: rgba($color-fg-primary, 0.75);
+$box-shadow-color-alt: rgba($color-bg-primary, 0.75);
