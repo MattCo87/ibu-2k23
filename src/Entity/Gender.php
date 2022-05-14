@@ -29,9 +29,15 @@ class Gender
      */
     private $athletes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Competition::class, mappedBy="gender")
+     */
+    private $competitions;
+
     public function __construct()
     {
         $this->athletes = new ArrayCollection();
+        $this->competitions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Gender
             // set the owning side to null (unless already changed)
             if ($athlete->getGender() === $this) {
                 $athlete->setGender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Competition>
+     */
+    public function getCompetitions(): Collection
+    {
+        return $this->competitions;
+    }
+
+    public function addCompetition(Competition $competition): self
+    {
+        if (!$this->competitions->contains($competition)) {
+            $this->competitions[] = $competition;
+            $competition->setGender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetition(Competition $competition): self
+    {
+        if ($this->competitions->removeElement($competition)) {
+            // set the owning side to null (unless already changed)
+            if ($competition->getGender() === $this) {
+                $competition->setGender(null);
             }
         }
 
