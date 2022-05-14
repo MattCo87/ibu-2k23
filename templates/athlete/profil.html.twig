@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to IBU2K22!
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div>
+			<h1>Profil</h1>
+		</div>
+		{% if form is defined %}
+			<div class="line">
+				{{ form(form) }}
+				</div>
+			{% endif %}
+		</header>
+		<main class="main_center">
+			<table class="app_table">
+				<tr>
+					<td>
+						<img class="app_image thumbnail" src="{{ asset(athlete.country.flag) }}" alt=""/>
+					</td>
+					<td>
+						{{ athlete.country.name }}
+					</td>
+
+					<td>
+						{{ athlete.gender.name }}
+					</td>
+					<td>
+						{{ athlete.firstname }}
+					</td>
+					<td>
+						{{ athlete.lastname }}
+					</td>
+					<td>
+						{{ athlete.total2021 }}
+					</td>
+				</tr>
+			</table>
+		</main>
+
+	{% endblock %}

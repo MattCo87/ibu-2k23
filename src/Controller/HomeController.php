@@ -16,8 +16,18 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
-        ]);
+        return $this->render('home/index.html.twig', []);
     }
 
+    /**
+     * @Route("/calendar", name="app_calendar")
+     */
+    public function CalendarIndex(RunRepository $runs): Response
+    {
+        $calendar = $runs->findBy(['athlete' => Null]);
+        //dd($calendar);
+        return $this->render('home/calendar.html.twig', [
+            'calendar' => $calendar,
+        ]);
+    }
 }

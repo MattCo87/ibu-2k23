@@ -11,7 +11,6 @@
 	<nav class="app_navigation">
 		<ul>
 			{% if app.user %}
-			{#
 				{% if app.user.athlete %}
 					{% set i = 1 %}
 					<li>
@@ -42,7 +41,6 @@
 					{{ 'athlète' | trans | capitalize }}
 				</a>
 			</li>
-			#}
 			<li>
 				<a href="#" {% if 'user' in app.request.get('_route') %} class="active" {% endif %}>{{ app.user.email is not null ? app.user.email : app.user.fullname }}</a>
 
