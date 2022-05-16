@@ -24,7 +24,7 @@ class HomeController extends AbstractController
      */
     public function CalendarIndex(RunRepository $runs): Response
     {
-        $calendar = $runs->findBy(['athlete' => Null]);
+        $calendar = $runs->findAll();
         //dd($calendar);
         return $this->render('home/calendar.html.twig', [
             'calendar' => $calendar,
