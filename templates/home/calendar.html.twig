@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to IBU2K22!
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div>
+			<h1>Calendrier</h1>
+		</div>
+	</header>
+	<main class="main_center">
+		<table class="app_table">
+			{% for step in calendar %}
+				<tr>
+					<td>
+						{{ step.daterun|date("d/m/Y") }}
+					</td>
+					<td>
+						{{ step.stage.name }}
+					</td>
+					<td>
+						<img class="app_image thumbnail" src="{{ asset(step.stage.country.flag) }}" alt=""/>
+					</td>                    
+					<td>
+						{{ step.hourrun }}
+					</td>
+					<td>
+						{{ step.competition.style.name }}
+					</td>
+					<td>
+						{{ step.competition.gender.name }}
+					</td>
+					<td>
+						{{ step.competition.nameCompetition }}
+					</td>
+					<td>
+				        <a href="{{ path('app_play', {'id': step.id})  }}" title="consult">
+					        -->
+				        </a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</main>
+
+{% endblock %}
