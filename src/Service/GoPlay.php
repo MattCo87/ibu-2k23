@@ -5,11 +5,10 @@ namespace App\Service;
 use App\Entity\User;
 use App\Entity\Run;
 use App\Repository\RunRepository;
-use App\Repository\PointsRepository;
+use App\Repository\PointRepository;
 use App\Repository\ShotRepository;
 use App\Repository\CompetitionRepository;
 use App\Repository\ZoneRepository;
-use App\Repository\ResultRepository;
 use App\Repository\AthleteRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,18 +17,16 @@ class GoPlay extends ServiceEntityRepository
 {
     private $ems;
     private $emz;
-    private $emrt;
     private $ema;
     private $emc;
     private $emr;
     private $emp;
     private $manager;
 
-    function __construct(?PointsRepository $emp, ?RunRepository $emr, ?AthleteRepository $ema, ?CompetitionRepository $emc, ?ShotRepository $ems, ?ZoneRepository $emz, ?ResultRepository $emrt, EntityManagerInterface $manager)
+    function __construct(?PointRepository $emp, ?RunRepository $emr, ?AthleteRepository $ema, ?CompetitionRepository $emc, ?ShotRepository $ems, ?ZoneRepository $emz, EntityManagerInterface $manager)
     {
         $this->ems = $ems;
         $this->emz = $emz;
-        $this->emrt = $emrt;
         $this->ema = $ema;
         $this->emc = $emc;
         $this->emr = $emr;
@@ -228,7 +225,7 @@ class GoPlay extends ServiceEntityRepository
                 array_push($classement, $athlete);
             }
         }
-        dd($classement);
+        //dd($classement);
 
 
         return $competitionId;

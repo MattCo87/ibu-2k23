@@ -27,7 +27,6 @@ class HomeController extends AbstractController
     private $ema;
     private $emc;
 
-
     public function __construct(Security $security, RunRepository $emr, CompetitionRepository $emc, AthleteRepository $ema, ShotRepository $ems, ZoneRepository $emz, EntityManagerInterface $manager)
     {
         $this->security = $security;
@@ -65,7 +64,7 @@ class HomeController extends AbstractController
      */
     public function ClassementIndex(Request $request): Response
     {
-        $play = new GoPlay($this->emp, $this->emr, $this->ema, $this->emc, $this->ems, $this->emz, $this->emrt, $this->manager);
+        $play = new GoPlay($this->emp, $this->emr, $this->ema, $this->emc, $this->ems, $this->emz, $this->manager);
         $idOnglet = $request->attributes->all(); 
         $Onglet = $idOnglet['action'] ." ". $this->security->getUser()->getAthlete()->getGender()->getName();
 

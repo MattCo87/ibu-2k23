@@ -58,7 +58,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     
     public function addAthlete($user, $athlete){
-dd($athlete);
+
         $var_user = $this->findBy(['id' => $user]);
         $var_user[0]->setAthlete($athlete);
         $this->_em->persist($var_user[0]);

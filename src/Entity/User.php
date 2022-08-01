@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=athlete::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=athlete::class, inversedBy="users",cascade={"persist"})
      */
     private $athlete;
 
