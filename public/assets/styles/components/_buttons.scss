@@ -1,0 +1,58 @@
+.app_button {
+    display: inline;
+    padding: 0.5rem 1rem;
+    font-family: $font-family-secondary;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    color: $color-fg-primary;
+    background-color: $color-bg-primary;
+    border: none;
+    border-radius: $border-radius-default;
+    box-shadow: $box-shadow-x $box-shadow-y $box-shadow-radius $box-shadow-color;
+    cursor: pointer;
+
+    &.cta {
+        padding: 0.75rem 1rem;
+        font-size: 1.25rem;
+        background-color: $color-orange;
+    }
+
+    &.danger {
+        background-color: $color-red;
+    }
+
+    &:hover {
+        color: $color-bg-primary !important;
+        background-color: $color-blue !important;
+        border: none !important;
+
+        i {
+            color: $color-bg-primary !important;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+
+        &:hover {
+            color: $color-fg-primary !important;
+            background-color: $color-bg-primary !important;
+            border: none !important;
+        }
+
+        &.cta{
+            &:hover {
+                color: $color-fg-primary !important;
+                background-color: $color-orange !important;
+                border: none !important;
+            }
+        }
+    }
+
+    i {
+        transition: color 0.3s ease-in-out;
+    }
+}

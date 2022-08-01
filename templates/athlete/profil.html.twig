@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to IBU2K22!
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div>
+			<h1>Profil</h1>
+		</div>
+		{% if form is defined %}
+			<div class="line">
+				{{ form(form) }}
+				</div>
+			{% endif %}
+		</header>
+		<main class="main_center">
+			<table class="app_table">
+				<tr>
+					<td>
+						<img class="app_image thumbnail" src="{{ asset(athlete.country.flag) }}" alt=""/>
+					</td>
+					<td>
+						{{ athlete.country.name }}
+					</td>
+
+					<td>
+						{{ athlete.gender.name }}
+					</td>
+					<td>
+						{{ athlete.firstname }}
+					</td>
+					<td>
+						{{ athlete.lastname }}
+					</td>
+					<td>
+						{{ athlete.cltG2022 }}
+					</td>
+				</tr>
+			</table>
+			{% if result is not empty %}
+				<table class="app_table">
+					{% set i = 0 %}
+					<tr>
+						<th scope="col">N°</th>
+						<th scope="col">Pays</th>
+						<th scope="col">Ville</th>
+						<th scope="col">Compétition</th>
+						<th scope="col">Tir couché</th>
+						<th scope="col">Tir debout</th>
+						<th scope="col">Temps de tir</th>
+						<th scope="col">Temps pénalité tir</th>
+						<th scope="col">Temps de ski</th>
+						<th scope="col">Temps total</th>
+					</tr>
+					{% for raw in result %}
+						{% set i = i + 1 %}
+						<tr>
+							<td>
+								{{ raw.positionRun }}
+							</td>
+							<td>
+								<img class="app_image thumbnail" src="{{ asset(raw.run.stage.country.flag) }}" alt=""/>
+							</td>
+							<td>
+								{{ raw.run.stage.name }}
+							</td>
+							<td>
+								{{ raw.run.competition.style.name }}
+							</td>
+							<td>
+								{{ raw.shotsuccessc }}
+								/
+								{{ 10 }}
+							</td>
+							<td>
+								{{ raw.shotsuccessd }}
+								/
+								{{ 10 }}
+							</td>
+							<td>
+								{{ raw.timeshot }}
+							</td>
+							<td>
+								{{ raw.timepenalty }}
+							</td>
+							<td>
+								{{ raw.timeski }}
+							</td>
+							<td>
+								{{ raw.timerun }}
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% endif %}
+		</main>
+
+	{% endblock %}

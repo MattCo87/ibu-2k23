@@ -1,0 +1,117 @@
+.app_footer {
+    padding: 1.5rem 0.5rem 1rem;
+    color: $color-bg-secondary;
+    background-color: $color-fg-primary;
+
+    @include respond(sm) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @include respond(md) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .app_footer_links {
+        @include respond(sm) {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        &.legals {
+            padding-top: 1.5rem;
+            justify-content: center;
+            border-top: 2px solid $color-red;
+
+            a {
+                display: block;
+                margin: 0 1rem 0.5rem;
+                font-size: 0.8rem;
+                text-decoration: none;
+                text-align: center;
+                color: $color-bg-primary;
+
+                &:hover,
+                &.active {
+                    color: $color-orange;
+                }
+            }
+        }
+
+        nav {
+            margin-bottom: 1.5rem;
+
+            h3 {
+                text-align: center;
+                color: $color-bg-secondary;
+                text-shadow: calc(#{$box-shadow-x} / 2) calc(#{$box-shadow-y} / 2) 0 $box-shadow-color;
+            }
+
+            ul {
+                li {
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        text-align: center;
+                        color: $color-bg-secondary;
+
+                        &:hover,
+                        &.active {
+                            color: $color-orange;
+                        }
+                    }
+                }
+            }
+
+            &.socials {
+                ul {
+                    display: flex;
+                    justify-content: center;
+
+                    li {
+                        a {
+                            margin: 0.5rem 1rem;
+                            font-size: 2rem;
+
+                            &.facebook {
+                                color: #1877f2;
+                            }
+
+                            &.twitter {
+                                color: #1da1f2;
+                            }
+
+                            &.instagram {
+                                color: #405de6;
+                            }
+
+                            &.youtube {
+                                color: #ff0000;
+                            }
+
+                            &:hover {
+                                color: $color-orange;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .app_logo {
+        display: block;
+        text-align: center;
+
+        img {
+            display: inline-block;
+            filter: drop-shadow($box-shadow-x $box-shadow-y $box-shadow-radius $box-shadow-color);
+        }
+    }
+
+    .copyrights {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}

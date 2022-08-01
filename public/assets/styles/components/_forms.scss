@@ -1,0 +1,234 @@
+.app_form {
+    padding: 1rem 0.5rem;
+
+    @include respond(sm) {
+        padding: 1rem;
+        background-color: $box-shadow-color-alt;
+        border-radius: $border-radius-default;
+        box-shadow: inset calc(#{$box-shadow-x} / 2) calc(#{$box-shadow-y} / 2) $box-shadow-radius $box-shadow-color;
+    }
+
+    @include respond(md) {
+        padding: 1.5rem;
+    }
+
+    .app_grid {
+        margin-bottom: 1.5rem;
+
+        @include respond(sm) {
+            align-items: center;
+        }
+
+        .app_form_group {
+            margin-bottom: 1.5rem !important;
+            background-color: transparent;
+            box-shadow: none;
+
+            &:last-of-type {
+                margin-bottom: 0 !important;
+            }
+
+            @include respond(sm) {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    .app_form_group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+
+        &.button {
+            position: relative;
+
+            button {
+                display: inline;
+                position: absolute;
+                top: 1.75rem;
+                right: 0.5rem;
+                padding: 0.5rem;
+                font-family: $font-family-secondary;
+                font-weight: 600;
+                text-decoration: none;
+                text-align: center;
+                color: $color-fg-primary;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    color: $color-orange;
+                }
+
+                @include respond(sm) {
+                    top: 2.4rem;
+                    right: 0.5rem;
+                }
+            }
+
+            .app_form_control {
+                padding-right: 3.5rem;
+            }
+
+            #loader {
+                display: none;
+                position: absolute;
+                top: 2.4rem;
+                left: 50%;
+                transform: translateX(-50%);
+
+                @include respond(sm) {
+                    top: 2.9rem;
+                }
+            }
+
+            #characters {
+                order: 9;
+                display: none;
+                margin: 0 1rem;
+                padding: 1rem;
+                background-color: $color-bg-primary;
+                border: 1px solid $color-fg-primary;
+                border-top: none;
+                border-bottom-left-radius: $border-radius-default;
+                border-bottom-right-radius: $border-radius-default;
+
+                .character {
+                    font-weight: bold;
+                    cursor: pointer;
+
+                    span {
+                        font-weight: normal;
+                    }
+
+                    &:hover {
+                        color: $color-blue;
+                    }
+                }
+            }
+        }
+
+        &.checkbox {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            label {
+                order: 2;
+                margin: 0;
+                width: auto;
+                cursor: pointer;
+            }
+
+            .app_form_control {
+                order: 1;
+                margin-right: 0.5rem;
+                width: auto;
+            }
+        }
+
+        .app_form_control {
+            order: 2;
+            display: block;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            font-family: $font-family-primary;
+            font-size: 1rem;
+            text-align: center;
+            color: $color-fg-primary;
+            background-color: $color-bg-primary;
+            border: none;
+            border-radius: $border-radius-default;
+            box-shadow: calc(#{$box-shadow-x} / 2) calc(#{$box-shadow-y} / 2) calc(#{$box-shadow-radius} / 2) $box-shadow-color;
+            transition: all 0.3s ease;
+
+            &[required] + label:after {
+                content: "*";
+                color: red;
+            }
+
+            &:hover,
+            &:focus {
+                outline: none;
+                box-shadow: $box-shadow-x $box-shadow-y $box-shadow-radius $box-shadow-color;
+            }
+
+            &.disabled {
+                cursor: not-allowed;
+
+                &:hover,
+                &:focus {
+                    outline: none;
+                    box-shadow: calc(#{$box-shadow-x} / 2) calc(#{$box-shadow-y} / 2) calc(#{$box-shadow-radius} / 2) $box-shadow-color;
+                }
+            }
+
+            option {
+                text-align: center;
+            }
+        }
+
+        label {
+            order: 1;
+            display: block;
+            margin-bottom: 0.25rem;
+            font-family: $font-family-secondary;
+            font-weight: 600;
+            text-align: center;
+
+            @include respond(sm) {
+                margin-bottom: 0.5rem;
+                font-size: 1.25rem;
+            }
+        }
+
+        textarea {
+            &.app_form_control {
+                max-width: 100%;
+                min-width: 100%;
+                min-height: 5rem;
+                text-align: left;
+                text-align-last: left;
+            }
+        }
+
+        select {
+            text-align: center;
+            text-align-last: center;
+
+            &.app_form_control {
+                cursor: pointer;
+            }
+        }
+
+        .cke {
+            order: 2;
+            border-radius: $border-radius-default;
+            box-shadow: calc(#{$box-shadow-x} / 2) calc(#{$box-shadow-y} / 2) calc(#{$box-shadow-radius} / 2) $box-shadow-color;
+            transition: all 0.3s ease;
+
+            &:hover,
+            &:focus,
+            &:active {
+                outline: none;
+                box-shadow: $box-shadow-x $box-shadow-y $box-shadow-radius $box-shadow-color;
+            }
+
+            .cke_inner {
+                border-radius: inherit;
+
+                .cke_top {
+                    border-top-left-radius: $border-radius-default;
+                    border-top-right-radius: $border-radius-default;
+                }
+
+                .cke_contents {
+                    border-radius: inherit;
+                }
+            }
+        }
+    }
+}
+
+@import "buttons", "ranges";

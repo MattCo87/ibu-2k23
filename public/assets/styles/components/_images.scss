@@ -1,0 +1,38 @@
+.app_image {
+    display: block;
+    margin: 0 auto;
+    border: 0.25rem solid $color-bg-primary;
+    border-radius: $border-radius-default;
+    box-shadow: $box-shadow-x $box-shadow-y $box-shadow-radius $box-shadow-color;
+
+    &.thumbnail2 {
+        height: 3rem;
+        width: 5rem !important;
+        object-fit: contain;
+        object-position: center;
+        border: none;
+    }
+
+    &.thumbnail {
+        margin-bottom: -0.75rem;
+        height: 2rem;
+        width: 2rem !important;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 50% !important;
+
+        @include respond(sm) {
+            height: 3rem;
+            width: 3rem !important;
+        }
+
+        @include respond(md) {
+            height: 2.5rem;
+            width: 2.5rem !important;
+        }
+    }
+
+    &.active {
+        border-color: $color-orange;
+    }
+}
