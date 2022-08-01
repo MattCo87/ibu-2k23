@@ -18,12 +18,12 @@ class AShot
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=athlete::class, inversedBy="aShots")
+     * @ORM\ManyToOne(targetEntity=Athlete::class, inversedBy="aShots")
      */
     private $athlete;
 
     /**
-     * @ORM\ManyToOne(targetEntity=shot::class, inversedBy="aShots")
+     * @ORM\ManyToOne(targetEntity=Shot::class, inversedBy="aShots")
      */
     private $shot;
 

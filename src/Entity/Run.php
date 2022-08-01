@@ -35,22 +35,22 @@ class Run
     private $stepRun;
 
     /**
-     * @ORM\ManyToOne(targetEntity=stage::class, inversedBy="runs")
+     * @ORM\ManyToOne(targetEntity=Stage::class, inversedBy="runs")
      */
     private $stage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=competition::class, inversedBy="runs")
+     * @ORM\ManyToOne(targetEntity=Competition::class, inversedBy="runs")
      */
     private $competition;
 
     /**
-     * @ORM\ManyToMany(targetEntity=zone::class, inversedBy="runs")
+     * @ORM\ManyToMany(targetEntity=Zone::class, inversedBy="runs")
      */
     private $zone;
 
     /**
-     * @ORM\ManyToMany(targetEntity=shot::class, inversedBy="runs")
+     * @ORM\ManyToMany(targetEntity=Shot::class, inversedBy="runs")
      */
     private $shot;
 

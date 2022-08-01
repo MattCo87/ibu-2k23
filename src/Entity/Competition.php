@@ -40,12 +40,12 @@ class Competition
     private $shotNumber;
 
     /**
-     * @ORM\ManyToOne(targetEntity=style::class, inversedBy="competitions")
+     * @ORM\ManyToOne(targetEntity=Style::class, inversedBy="competitions")
      */
     private $style;
 
     /**
-     * @ORM\ManyToOne(targetEntity=gender::class, inversedBy="competitions")
+     * @ORM\ManyToOne(targetEntity=Gender::class, inversedBy="competitions")
      */
     private $gender;
 

@@ -35,13 +35,13 @@ class Athlete
     private $cltG2022;
 
     /**
-     * @ORM\ManyToOne(targetEntity=gender::class, inversedBy="athletes")
+     * @ORM\ManyToOne(targetEntity=Gender::class, inversedBy="athletes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gender;
 
     /**
-     * @ORM\ManyToOne(targetEntity=country::class, inversedBy="athletes")
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="athletes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $country;

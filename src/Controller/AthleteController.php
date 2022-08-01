@@ -34,7 +34,7 @@ class AthleteController extends AbstractController
         //dd($var_athlete->getId());
         $var_result = $this->emrt->findBy(['athlete' => $var_athlete->getId()]);
         //dd($var_result);
-        
+
 
         return $this->render('athlete/profil.html.twig', [
             'athlete' => $var_athlete,
@@ -88,10 +88,12 @@ class AthleteController extends AbstractController
     /**
      * @Route("/athlete/select/{id}", name="app_athlete_select")
      */
-    public function SelectProfil(Athlete $athlete): Response
+    public function SelectProfil(Athlete $athlete)
     {
+        dd($athlete);
         $user = $this->security->getUser()->getid();
-        $test =$this->emu->addAthlete($user, $athlete);
+        var_dump($athlete);
+        $test = $this->emu->addAthlete($user, $athlete);
 
         return $this->render('home/index.html.twig', []);
     }

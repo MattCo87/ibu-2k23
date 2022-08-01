@@ -18,12 +18,12 @@ class AZone
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=athlete::class, inversedBy="aZones")
+     * @ORM\ManyToOne(targetEntity=Athlete::class, inversedBy="aZones")
      */
     private $athlete;
 
     /**
-     * @ORM\ManyToOne(targetEntity=zone::class, inversedBy="aZones")
+     * @ORM\ManyToOne(targetEntity=Zone::class, inversedBy="aZones")
      */
     private $zone;
 

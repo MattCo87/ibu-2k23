@@ -22,7 +22,7 @@
 				{% for athlete in athletes %}
 					<tr>
 						<td>
-							<img class="app_image thumbnail" src="{{ asset(athlete.country.flag) }}" alt=""/>
+							<img class="app_image thumbnail" src="{{ asset('assets/styles/' ~ athlete.country.flag) }}" alt=""/>
 						</td>
 						<td>
 							{{ athlete.country.name }}
