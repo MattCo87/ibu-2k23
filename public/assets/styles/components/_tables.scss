@@ -1,0 +1,97 @@
+h2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.app_table {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+
+    td, th {
+        padding: 1.5rem;
+        border: 3px blue solid;
+        align-content: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .you {
+        background-color: blue;
+        color: white;
+    }
+}
+
+.app_tabs {
+    .tabs {
+        position: relative;
+        min-height: 60px;
+        clear: both;
+        margin: 25px 10px;
+
+        .tab {
+            float: left;
+
+            a {
+                text-decoration: none;
+                font-family: $font-family-secondary;
+                font-weight: bold;
+                background: $color-bg-altmenu;
+                color: $color-bg-primary;
+                padding: 10px;
+                margin-top: 1rem;
+                margin-left: 1rem;
+                position: relative;
+                left: 1rem;
+                border-radius: 10px 10px 10px 10px;
+                cursor: pointer;
+            }
+
+            [type="radio"] {
+                display: none;
+
+                &:checked {
+                    & ~ label {
+                      
+                        color: $color-bg-primary;
+                        border-bottom: 1px solid white;
+                        z-index: 2;
+
+                        & ~ .content {
+                            z-index: 1;
+
+                            & > * {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .content {
+                position: absolute;
+                top: 50px;
+                left: 0;
+                background: $color-bg-secondary;
+                right: 0;
+                bottom: 0;
+                padding: 20px;
+                border-radius: 10px 10px 10px 10px;
+                overflow: hidden;
+                overflow-y: auto;
+                margin-bottom: -20px;
+            }
+
+            .equipChecked {
+                font-weight: bold;
+                background-color: darkgreen;
+                color: white;
+            }
+        }
+    }
+}
+
+

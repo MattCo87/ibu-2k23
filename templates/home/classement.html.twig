@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to IBU2K23!
+{% endblock %}
+
+{% block body %}
+	<div>
+		<h1>{{ 'classement' | trans | capitalize }}</h1>
+	</div>
+	<main>
+		<section>
+			<div id="menu-tab" class="app_tabs">
+				<div class="tabs">
+					<div class="tab">
+						<input type="radio" id="tab-1" name="tab-group" data-typeid="1" checked="checked">
+						<label for="tab-1">
+							<a href="{{ path('app_classement', {action : 'General' }) }}" title="Général">
+								{{ 'général' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+					<div class="tab">
+						<input type="radio" id="tab-2" name="tab-group" data-typeid="2">
+						<label for="tab-2">
+							<a href="{{ path('app_classement', {action : 'Sprint' }) }}" title="Sprint">
+								{{ 'sprint' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+					<div class="tab">
+						<input type="radio" id="tab-3" name="tab-group" data-typeid="3">
+						<label for="tab-3">
+							<a href="{{ path('app_classement', {action : 'Individuel' }) }}" title="Individuel">
+								{{ 'individuel' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+					<div class="tab">
+						<input type="radio" id="tab-4" name="tab-group" data-typeid="4">
+						<label for="tab-4">
+							<a href="{{ path('app_classement', {action : 'Poursuite' }) }}" title="Poursuite">
+								{{ 'poursuite' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+					<div class="tab">
+						<input type="radio" id="tab-5" name="tab-group" data-typeid="5">
+						<label for="tab-5">
+							<a href="{{ path('app_classement', {action : 'Mass_Start' }) }}" title="Mass Start">
+								{{ 'mass start' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+					<div class="tab">
+						<input type="radio" id="tab-6" name="tab-group" data-typeid="6">
+						<label for="tab-6">
+							<a href="{{ path('app_classement', {action : 'Relais' }) }}" title="Relais">
+								{{ 'relais' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+					<div class="tab">
+						<input type="radio" id="tab-7" name="tab-group" data-typeid="7">
+						<label for="tab-7">
+							<a href="{{ path('app_classement', {action : 'Nations' }) }}" title="Nations">
+								{{ 'nations' | trans | capitalize }}
+							</a>
+						</label>
+					</div>
+				</div>
+				<div>
+					<h2>
+						{{ idOnglet }}
+					</h2>
+				</div>
+				<div>
+					{{ standing }}
+				</div>
+			</div>
+		</section>
+	</main>
+{% endblock %}

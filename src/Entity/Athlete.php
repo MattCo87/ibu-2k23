@@ -51,9 +51,21 @@ class Athlete
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AZone::class, mappedBy="athlete")
+     */
+    private $aZones;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AShot::class, mappedBy="athlete")
+     */
+    private $aShots;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->aZones = new ArrayCollection();
+        $this->aShots = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +157,66 @@ class Athlete
             // set the owning side to null (unless already changed)
             if ($user->getAthlete() === $this) {
                 $user->setAthlete(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AZone>
+     */
+    public function getAZones(): Collection
+    {
+        return $this->aZones;
+    }
+
+    public function addAZone(AZone $aZone): self
+    {
+        if (!$this->aZones->contains($aZone)) {
+            $this->aZones[] = $aZone;
+            $aZone->setAthlete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAZone(AZone $aZone): self
+    {
+        if ($this->aZones->removeElement($aZone)) {
+            // set the owning side to null (unless already changed)
+            if ($aZone->getAthlete() === $this) {
+                $aZone->setAthlete(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AShot>
+     */
+    public function getAShots(): Collection
+    {
+        return $this->aShots;
+    }
+
+    public function addAShot(AShot $aShot): self
+    {
+        if (!$this->aShots->contains($aShot)) {
+            $this->aShots[] = $aShot;
+            $aShot->setAthlete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAShot(AShot $aShot): self
+    {
+        if ($this->aShots->removeElement($aShot)) {
+            // set the owning side to null (unless already changed)
+            if ($aShot->getAthlete() === $this) {
+                $aShot->setAthlete(null);
             }
         }
 

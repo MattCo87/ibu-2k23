@@ -1,0 +1,15 @@
+&.login {
+    .app_footer {
+        @include respond(sm) {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        @include respond(md) {
+            position: static;
+            width: auto;
+        }
+    }
+}

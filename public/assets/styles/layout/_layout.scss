@@ -1,0 +1,91 @@
+html {
+    font-size: $font-size-default;
+
+    body {
+        font-family: $font-family-primary;
+        font-size: 1rem;
+        color: $color-fg-primary;
+        background-color: $color-bg-primary;
+
+        @include respond(sm) {
+            text-align: left;
+        }
+
+        @import "../base/typography";
+        @import "../components/forms", "../components/sliders", "../components/grids", "../components/alerts",
+        "../components/images", "../components/filters", "../components/modals", "../components/tables";
+
+        @import "header";
+
+        article {
+            & > section,
+            & > aside {
+                padding: 2rem 0.5rem;
+                background-color: $color-bg-secondary;
+
+                @include respond(sm) {
+                    margin: -0.5rem 1rem 1.5rem;
+                    padding-top: 2rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    border-bottom-left-radius: $border-radius-default;
+                    border-bottom-right-radius: $border-radius-default;
+                    box-shadow: $box-shadow-x $box-shadow-y $box-shadow-radius $box-shadow-color;
+                }
+
+                @include respond(md) {
+                    margin-left: 15vw;
+                    margin-right: 15vw;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+            }
+
+            & > aside {
+                text-align: center;
+                background-color: transparent;
+
+                @include respond(sm) {
+                    text-align: left;
+                    background-color: $color-bg-secondary;
+                }
+
+                h2 {
+                    margin-bottom: 0.5rem;
+                }
+
+                p,
+                a,
+                span {
+                    display: block;
+                    margin-bottom: 1rem;
+                    line-height: normal;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            &.aside {
+                @include respond(md) {
+                    display: grid;
+                    grid-template-columns: 7fr 3fr;
+                    grid-gap: 1.5rem;
+                    align-items: flex-start;
+                    padding: 0 12vw;
+
+                    & > section,
+                    & > aside {
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        @import "footer";
+
+        @import "../pages/home", "../pages/login", "../pages/faq", "../pages/contact";
+    }
+}

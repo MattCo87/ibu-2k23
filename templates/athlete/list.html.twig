@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to IBU2K22!
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div>
+			<h1>Choisis ton athlète</h1>
+		</div>
+	</header>
+	<main class="main_center">
+		<div>
+			{{ form(form) }}
+			</div>
+			{% if message is defined %}
+				<h2>{{ message }}</h2>
+			{% endif %}
+
+
+			<table class="app_table">
+				{% for athlete in athletes %}
+					<tr>
+						<td>
+							<img class="app_image thumbnail" src="{{ asset(athlete.country.flag) }}" alt=""/>
+						</td>
+						<td>
+							{{ athlete.country.name }}
+						</td>
+
+						<td>
+							{{ athlete.gender.name }}
+						</td>
+						<td>
+							{{ athlete.firstname }}
+						</td>
+						<td>
+							{{ athlete.lastname }}
+						</td>
+						<td>
+							{{ athlete.cltG2022 }}
+						</td>
+
+						<td>
+							<a href="{{ path('app_athlete_select', {'id': athlete.id}) }}" title="Sélectionner">
+								-->
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</main>
+
+	{% endblock %}
