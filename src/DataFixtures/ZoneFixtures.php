@@ -18,11 +18,11 @@ class ZoneFixtures extends Fixture implements OrderedFixtureInterface
          */
         $tabzone = [];
         $tabzone = [
-            "Zone 1",
-            "Zone 2", 
-            "Zone 3",
-            "Zone 4", 
-            "Zone 5",
+            "Plaine",
+            "Montagne", 
+            "Descente",
+            "Mont", 
+            "Vallée",
         ];
         
         foreach ($tabzone as &$value)

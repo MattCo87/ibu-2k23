@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome to IBU2K23!
+{% block title %}|-=-| Welcome to IBU2K23 |-=-|
 {% endblock %}
 
 {% block body %}
@@ -41,6 +41,11 @@
 							{{ athlete.cltG2022 }}
 						</td>
 
+						<td>
+							<a href="{{ path('app_athlete_profil', {'id': athlete.id}) }}" title="Perso">
+								?
+							</a>
+						</td>
 						<td>
 							<a href="{{ path('app_athlete_select', {'id': athlete.id}) }}" title="Sélectionner">
 								-->

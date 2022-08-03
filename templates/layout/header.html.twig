@@ -1,6 +1,6 @@
 <header class="app_header">
 	<a href="{{ path('app_home') }}" class="app_logo" title="{{ 'pages.home.title' | trans | capitalize }}">
-		<img src="{{ asset('images/logo_ibu.png') }}" alt=""/>
+		<img src="{{ asset('assets/styles/images/logo_ibu.png') }}" alt=""/>
 	</a>
 
 	<input class="app_navigation_toggle" type="checkbox" id="menu_btn"/>
@@ -33,6 +33,11 @@
 
 
 			{% if app.user.athlete > "" %}
+				<li>
+					<a href="{{ path('app_training') }}" title="Entrainement">
+						{{ 'entraîne-toi' | trans | capitalize }}
+					</a>
+				</li>
 				<li>
 					<a href="{{ path('app_classement', {action : 'General' }) }}" title="Classement">
 						{{ 'classement' | trans | capitalize }}

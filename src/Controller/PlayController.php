@@ -57,20 +57,32 @@ class PlayController extends AbstractController
     }
 
     /**
+     * @Route("/training", name="app_training")
+     */
+
+    public function train(): Response
+    {
+
+        return $this->render('play/training.html.twig', []);
+    }
+
+    /**
      * @Route("/game/{id}", name="app_play_game")
      */
 
     public function PlayGame(Run $run): Response
     {
+        /*
         $play = new GoPlay($this->emp,$this->emr, $this->ema, $this->emc, $this->ems, $this->emz, $this->emrt, $this->manager);
         $run = $this->emr->find($run->getId());
 
         $result = $play->GoGame($run, $this->security->getUser());
-//dd($result);
+        //dd($result);
+        */
         return $this->render('play/game.html.twig', [
-            'result' => $result,
+        /*    'result' => $result,
             'run' => $run,
-            'user' => $this->security->getUser(),
+            'user' => $this->security->getUser(), */
         ]);
     }
 }

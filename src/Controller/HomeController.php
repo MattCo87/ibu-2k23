@@ -64,11 +64,13 @@ class HomeController extends AbstractController
      */
     public function ClassementIndex(Request $request): Response
     {
+        /*
         $play = new GoPlay($this->emp, $this->emr, $this->ema, $this->emc, $this->ems, $this->emz, $this->manager);
-        $idOnglet = $request->attributes->all(); 
-        $Onglet = $idOnglet['action'] ." ". $this->security->getUser()->getAthlete()->getGender()->getName();
-
         $standing = $play->GoStand($idOnglet['action'], $this->security->getUser()->getAthlete()->getGender()->getId());
+*/
+        $idOnglet = $request->attributes->all();
+        $Onglet = $idOnglet['action'] . " " . $this->security->getUser()->getAthlete()->getGender()->getName();
+        $standing = '';
 
         return $this->render('home/classement.html.twig', [
             'idOnglet' => $Onglet,
