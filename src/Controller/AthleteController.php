@@ -93,7 +93,7 @@ class AthleteController extends AbstractController
     {
         $var_athlete = $this->ema->find($athlete->getId());
         $user = $this->security->getUser()->getid();
-        $test =$this->emu->addAthlete($user, $athlete);
+        $test =$this->emu->addAthlete($user, $var_athlete);
 
         return $this->render('home/index.html.twig', []);
     }
