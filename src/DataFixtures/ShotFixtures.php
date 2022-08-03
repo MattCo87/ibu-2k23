@@ -18,19 +18,16 @@ class ShotFixtures extends Fixture implements OrderedFixtureInterface
          */
         $tabshot = [];
         $tabshot = [
-        ["Couché", 1],
-        ["Couché", 2],
-        ["Debout", 1],
-        ["Debout", 2],
+        "Couché",
+        "Debout",
         ];
         
-        foreach ($tabshot as list($name, $number))
+        foreach ($tabshot as $value)
         {
             $shot = new Shot();
-            $shot->setName($name);
-            $shot->setNumber($number);
+            $shot->setName($value);
             $manager->persist($shot);
-            //$this->addReference($shot->getName(), $shot);
+            $this->addReference($shot->getName(), $shot);
         }
         unset($value, $tabshot, $shot);
 

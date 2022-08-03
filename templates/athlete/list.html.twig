@@ -46,11 +46,14 @@
 								?
 							</a>
 						</td>
-						<td>
-							<a href="{{ path('app_athlete_select', {'id': athlete.id}) }}" title="Sélectionner">
-								-->
-							</a>
-						</td>
+
+						{% if app.user.athlete is empty %}
+							<td>
+								<a href="{{ path('app_athlete_select', {'id': athlete.id}) }}" title="Sélectionner">
+									-->
+								</a>
+							</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</table>

@@ -61,6 +61,11 @@ class Athlete
      */
     private $aShots;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $cltG2023;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -219,6 +224,18 @@ class Athlete
                 $aShot->setAthlete(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCltG2023(): ?int
+    {
+        return $this->cltG2023;
+    }
+
+    public function setCltG2023(?int $cltG2023): self
+    {
+        $this->cltG2023 = $cltG2023;
 
         return $this;
     }

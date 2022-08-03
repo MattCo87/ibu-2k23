@@ -24,10 +24,6 @@ class Shot
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $number;
 
     /**
      * @ORM\ManyToMany(targetEntity=Run::class, mappedBy="shot")
@@ -62,17 +58,6 @@ class Shot
         return $this;
     }
 
-    public function getNumber(): ?string
-    {
-        return $this->number;
-    }
-
-    public function setNumber(string $number): self
-    {
-        $this->number = $number;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Run>
