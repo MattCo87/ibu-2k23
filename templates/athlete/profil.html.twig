@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome to IBU2K22!
+{% block title %}|-=-| Welcome to IBU2K23 |-=-|
 {% endblock %}
 
 {% block body %}
@@ -18,7 +18,7 @@
 			<table class="app_table">
 				<tr>
 					<td>
-						<img class="app_image thumbnail" src="{{ asset(athlete.country.flag) }}" alt=""/>
+						<img class="app_image thumbnail" src="{{ asset('assets/styles/' ~ athlete.country.flag) }}" alt=""/>
 					</td>
 					<td>
 						{{ athlete.country.name }}
@@ -60,7 +60,7 @@
 								{{ raw.positionRun }}
 							</td>
 							<td>
-								<img class="app_image thumbnail" src="{{ asset(raw.run.stage.country.flag) }}" alt=""/>
+								<img class="app_image thumbnail" src="{{ asset('assets/styles/' ~ raw.run.stage.country.flag) }}" alt=""/>
 							</td>
 							<td>
 								{{ raw.run.stage.name }}

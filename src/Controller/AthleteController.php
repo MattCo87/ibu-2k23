@@ -32,8 +32,9 @@ class AthleteController extends AbstractController
     public function AthleteProfil(Athlete $athlete): Response
     {
         $var_athlete = $this->ema->findOneBy(['id' => $athlete]);
+        $var_result = '';
         //dd($var_athlete->getId());
-        $var_result = $this->emrt->findBy(['athlete' => $var_athlete->getId()]);
+        //$var_result = $this->emrt->findBy(['athlete' => $var_athlete->getId()]);
         //dd($var_result);
         
 

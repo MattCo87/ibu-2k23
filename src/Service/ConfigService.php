@@ -18,7 +18,7 @@ class ConfigService
         $this->configRepository = $configRepository;
         $defaultLocale = $this->configRepository->findOneByName('app_locale');
         $this->locale = $defaultLocale;
-        //$translator->setLocale($this->locale);
+        $translator->setLocale($this->locale);
     }
 
     public function getAppName()

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome to IBU2K22!
+{% block title %}|-=-| Welcome to IBU2K23 |-=-|
 {% endblock %}
 
 {% block body %}
@@ -9,60 +9,63 @@
 			<h1>Résultat</h1>
 		</div>
 	</header>
-	<main class="main_center">
-		<table class="app_table">
-			{% set i = 0 %}
-			<tr>
-				<th scope="col">N°</th>
-				<th scope="col">Pays</th>
-				<th scope="col">Nom</th>
-				<th scope="col">Prénom</th>
-				<th scope="col">Tir couché</th>
-				<th scope="col">Tir debout</th>
-				<th scope="col">Temps de tir</th>
-				<th scope="col">Temps pénalité tir</th>
-				<th scope="col">Temps de ski</th>
-				<th scope="col">Temps total</th>
-			</tr>
-			{% for raw in result %}
-				{% set i = i + 1 %}
-				<tr {% if raw.athlete.id == user.athlete.id %} class="you" {% endif %}>
-					<td>
-						{{ i }}
-					</td>
-					<td>
-						<img class="app_image thumbnail" src="{{ asset(raw.athlete.country.flag) }}" alt=""/>
-					</td>
-					<td>
-						{{ raw.athlete.lastname }}
-					</td>
-					<td>
-						{{ raw.athlete.firstname }}
-					</td>
-					<td>
-						{{ raw.shotsuccessc }}
-						/
-						{{ raw.shottotalc }}
-					</td>
-					<td>
-						{{ raw.shotsuccessd }}
-						/
-						{{ raw.shottotald }}
-					</td>
-					<td>
-						{{ raw.timeshot }}
-					</td>
-					<td>
-						{{ raw.timepenalite }}
-					</td>
-					<td>
-						{{ raw.timeski }}
-					</td>
-					<td>
-						{{ raw.timerun }}
-					</td>
+	{% if result is defined %}
+		<main class="main_center">
+			<table class="app_table">
+				{% set i = 0 %}
+				<tr>
+					<th scope="col">N°</th>
+					<th scope="col">Pays</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Tir couché</th>
+					<th scope="col">Tir debout</th>
+					<th scope="col">Temps de tir</th>
+					<th scope="col">Temps pénalité tir</th>
+					<th scope="col">Temps de ski</th>
+					<th scope="col">Temps total</th>
 				</tr>
-			{% endfor %}
-		</table>
-	</main>
+
+				{% for raw in result %}
+					{% set i = i + 1 %}
+					<tr {% if raw.athlete.id == user.athlete.id %} class="you" {% endif %}>
+						<td>
+							{{ i }}
+						</td>
+						<td>
+							<img class="app_image thumbnail" src="{{ asset(raw.athlete.country.flag) }}" alt=""/>
+						</td>
+						<td>
+							{{ raw.athlete.lastname }}
+						</td>
+						<td>
+							{{ raw.athlete.firstname }}
+						</td>
+						<td>
+							{{ raw.shotsuccessc }}
+							/
+							{{ raw.shottotalc }}
+						</td>
+						<td>
+							{{ raw.shotsuccessd }}
+							/
+							{{ raw.shottotald }}
+						</td>
+						<td>
+							{{ raw.timeshot }}
+						</td>
+						<td>
+							{{ raw.timepenalite }}
+						</td>
+						<td>
+							{{ raw.timeski }}
+						</td>
+						<td>
+							{{ raw.timerun }}
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</main>
+	{% endif %}
 {% endblock %}
