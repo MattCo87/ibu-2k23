@@ -11,6 +11,7 @@ Ensuite, procédure "normale":
  -> ouvrir un terminal dans l'éditeur
  
  -> composer install
+ 
  -> php bin/console d:d:d --force
  
  -> php bin/console d:d:c
