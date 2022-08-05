@@ -35,10 +35,21 @@ class Shot
      */
     private $aShots;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SStat::class, mappedBy="shot")
+     */
+    private $sStats;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $way;
+
     public function __construct()
     {
         $this->runs = new ArrayCollection();
         $this->aShots = new ArrayCollection();
+        $this->sStats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +123,48 @@ class Shot
                 $aShot->setShot(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SStat>
+     */
+    public function getSStats(): Collection
+    {
+        return $this->sStats;
+    }
+
+    public function addSStat(SStat $sStat): self
+    {
+        if (!$this->sStats->contains($sStat)) {
+            $this->sStats[] = $sStat;
+            $sStat->setShot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSStat(SStat $sStat): self
+    {
+        if ($this->sStats->removeElement($sStat)) {
+            // set the owning side to null (unless already changed)
+            if ($sStat->getShot() === $this) {
+                $sStat->setShot(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getWay(): ?string
+    {
+        return $this->way;
+    }
+
+    public function setWay(string $way): self
+    {
+        $this->way = $way;
 
         return $this;
     }

@@ -34,10 +34,21 @@ class Zone
      */
     private $aZones;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ZStat::class, mappedBy="zone")
+     */
+    private $zStats;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $way;
+
     public function __construct()
     {
         $this->runs = new ArrayCollection();
         $this->aZones = new ArrayCollection();
+        $this->zStats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,6 +121,48 @@ class Zone
                 $aZone->setZone(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ZStat>
+     */
+    public function getZStats(): Collection
+    {
+        return $this->zStats;
+    }
+
+    public function addZStat(ZStat $zStat): self
+    {
+        if (!$this->zStats->contains($zStat)) {
+            $this->zStats[] = $zStat;
+            $zStat->setZone($this);
+        }
+
+        return $this;
+    }
+
+    public function removeZStat(ZStat $zStat): self
+    {
+        if ($this->zStats->removeElement($zStat)) {
+            // set the owning side to null (unless already changed)
+            if ($zStat->getZone() === $this) {
+                $zStat->setZone(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getWay(): ?string
+    {
+        return $this->way;
+    }
+
+    public function setWay(?string $way): self
+    {
+        $this->way = $way;
 
         return $this;
     }

@@ -7,8 +7,11 @@ use App\Repository\CompetitionRepository;
 use App\Repository\PointRepository;
 use App\Entity\Run;
 use App\Entity\User;
+use App\Entity\ZStat;
 use App\Repository\ShotRepository;
 use App\Repository\ZoneRepository;
+use App\Repository\SStatRepository;
+use App\Repository\ZStatRepository;
 use App\Repository\AthleteRepository;
 use App\Service;
 use App\Service\GoPlay;
@@ -17,23 +20,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\Expr\GroupBy;
 
 class PlayController extends AbstractController
 {
     private $security;
     private $emr;
+    private $emp;
     private $ems;
     private $emz;
+    private $emss;
+    private $emzs;
     private $ema;
     private $emc;
-    private $emrt;
 
-    public function __construct(Security $security, PointRepository $emp, RunRepository $emr, CompetitionRepository $emc, AthleteRepository $ema, ShotRepository $ems, ZoneRepository $emz, EntityManagerInterface $manager)
+    public function __construct(SStatrepository $emss, ZStatrepository $emzs, Security $security, PointRepository $emp, RunRepository $emr, CompetitionRepository $emc, AthleteRepository $ema, ShotRepository $ems, ZoneRepository $emz, EntityManagerInterface $manager)
     {
         $this->security = $security;
         $this->emr = $emr;
         $this->ems = $ems;
         $this->emz = $emz;
+        $this->emss = $emss;
+        $this->emzs = $emzs;
         $this->ema = $ema;
         $this->emc = $emc;
         $this->emp = $emp;
@@ -62,9 +70,75 @@ class PlayController extends AbstractController
 
     public function train(): Response
     {
+        $varzone = $this->emz->findall();
+        $varshot = $this->ems->findall();
 
-        return $this->render('play/training.html.twig', []);
+        return $this->render('play/training.html.twig', [
+            'zone' => $varzone,
+            'shot' => $varshot,
+        ]);
     }
+
+    /**
+     * @Route("/trainingOK", name="app_training_OK")
+     */
+
+    public function trainOK(): Response
+    {
+
+        return $this->render('home/index.html.twig', [
+
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/zone/{id}", name="app_gozone")
+     */
+
+    public function gozone($id): Response
+    {
+        $step = $this->emz->find($id);
+        $userAthlete = $this->security->getUser()->getAthlete();
+
+        //dd($userAthlete);
+        return $this->render('play/zone.html.twig', [
+            'step' => $step,
+            'athlete' => $userAthlete,
+        ]);
+    }
+
+
+    /**
+     * @Route("/shot/{id}", name="app_goshot")
+     */
+
+    public function goshot($id): Response
+    {
+        $step = $this->ems->find($id);
+        $userAthlete = $this->security->getUser()->getAthlete();
+
+        return $this->render('play/shot.html.twig', [
+            'step' => $step,
+            'athlete' => $userAthlete,
+        ]);
+    }
+
 
     /**
      * @Route("/game/{id}", name="app_play_game")
@@ -80,9 +154,8 @@ class PlayController extends AbstractController
         //dd($result);
         */
         return $this->render('play/game.html.twig', [
-        /*    'result' => $result,
+            /*    'result' => $result,
             'run' => $run,
-            'user' => $this->security->getUser(), */
-        ]);
+            'user' => $this->security->getUser(), */]);
     }
 }

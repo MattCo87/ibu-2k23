@@ -66,11 +66,17 @@ class Athlete
      */
     private $cltG2023;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AStat::class, mappedBy="athlete")
+     */
+    private $aStats;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->aZones = new ArrayCollection();
         $this->aShots = new ArrayCollection();
+        $this->aStats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -236,6 +242,36 @@ class Athlete
     public function setCltG2023(?int $cltG2023): self
     {
         $this->cltG2023 = $cltG2023;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AStat>
+     */
+    public function getAStats(): Collection
+    {
+        return $this->aStats;
+    }
+
+    public function addAStat(AStat $aStat): self
+    {
+        if (!$this->aStats->contains($aStat)) {
+            $this->aStats[] = $aStat;
+            $aStat->setAthlete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAStat(AStat $aStat): self
+    {
+        if ($this->aStats->removeElement($aStat)) {
+            // set the owning side to null (unless already changed)
+            if ($aStat->getAthlete() === $this) {
+                $aStat->setAthlete(null);
+            }
+        }
 
         return $this;
     }
