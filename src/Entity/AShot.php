@@ -42,6 +42,11 @@ class AShot
      */
     private $shotPenalty;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAShot;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class AShot
     public function setShotPenalty(string $shotPenalty): self
     {
         $this->shotPenalty = $shotPenalty;
+
+        return $this;
+    }
+
+    public function getDateAShot(): ?\DateTimeInterface
+    {
+        return $this->dateAShot;
+    }
+
+    public function setDateAShot(\DateTimeInterface $dateAShot): self
+    {
+        $this->dateAShot = $dateAShot;
 
         return $this;
     }

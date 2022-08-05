@@ -35,7 +35,7 @@ class AZone
     /**
      * @ORM\Column(type="date")
      */
-    private $dateZone;
+    private $dateAZone;
 
     public function getId(): ?int
     {
@@ -78,14 +78,14 @@ class AZone
         return $this;
     }
 
-    public function getDateZone(): ?\DateTimeInterface
+    public function getDateAZone(): ?\DateTimeInterface
     {
-        return $this->dateZone;
+        return $this->dateAZone;
     }
 
-    public function setDateZone(\DateTimeInterface $dateZone): self
+    public function setDateAZone(\DateTimeInterface $dateAZone): self
     {
-        $this->dateZone = $dateZone;
+        $this->dateAZone = $dateAZone;
 
         return $this;
     }

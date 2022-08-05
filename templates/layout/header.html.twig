@@ -1,5 +1,5 @@
 <header class="app_header">
-	<a href="{{ path('app_home') }}" class="app_logo" title="{{ 'pages.home.title' | trans | capitalize }}">
+	<a href="{{ path('app_home') }}" class="app_logo" title="{{ 'accueil' | trans | capitalize }}">
 		<img src="{{ asset('assets/styles/images/logo_ibu.png') }}" alt=""/>
 	</a>
 
@@ -14,7 +14,7 @@
 				{% if app.user.athlete  %}
 					{% set i = 1 %}
 					<li>
-						<img class="app_image thumbnail2" src="{{ asset('assets/styles/' ~ app.user.athlete.country.flag) }}"  alt=""/>
+						<img class="app_image thumbnail2" src="{{ asset('assets/styles/' ~ app.user.athlete.country.flag) }}" alt=""/>
 					</li>
 					<li>
 						<a href="{{ path('app_athlete_profil', {'id': app.user.athlete.id }) }}" title="Perso">
@@ -46,11 +46,6 @@
 				<li>
 					<a href="{{ path('app_calendar') }}" title="Calendrier">
 						{{ 'calendrier' | trans | capitalize }}
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('app_athlete_choose') }}" title="Athlètes">
-						{{ 'athlète' | trans | capitalize }}
 					</a>
 				</li>
 			{% endif %}

@@ -36,64 +36,33 @@
 					<td>
 						{{ athlete.cltG2022 }}
 					</td>
+					<td>
+						{{ athlete.cltG2023 }}
+					</td>
 				</tr>
 			</table>
-			{% if result is not empty %}
+
+
+			{% if stat is not empty %}
 				<table class="app_table">
 					{% set i = 0 %}
 					<tr>
-						<th scope="col">N°</th>
-						<th scope="col">Pays</th>
-						<th scope="col">Ville</th>
-						<th scope="col">Compétition</th>
-						<th scope="col">Tir couché</th>
-						<th scope="col">Tir debout</th>
-						<th scope="col">Temps de tir</th>
-						<th scope="col">Temps pénalité tir</th>
-						<th scope="col">Temps de ski</th>
-						<th scope="col">Temps total</th>
+						{% for raw in stat %}
+							<th scope="col" title="{{ raw.stat.name | capitalize }}">{{ raw.stat.surname | upper }}</th>
+						{% endfor %}
 					</tr>
-					{% for raw in result %}
-						{% set i = i + 1 %}
-						<tr>
+					<tr>
+						{% for raw in stat %}
+
 							<td>
-								{{ raw.positionRun }}
+								{{ raw.value }}
 							</td>
-							<td>
-								<img class="app_image thumbnail" src="{{ asset('assets/styles/' ~ raw.run.stage.country.flag) }}" alt=""/>
-							</td>
-							<td>
-								{{ raw.run.stage.name }}
-							</td>
-							<td>
-								{{ raw.run.competition.style.name }}
-							</td>
-							<td>
-								{{ raw.shotsuccessc }}
-								/
-								{{ 10 }}
-							</td>
-							<td>
-								{{ raw.shotsuccessd }}
-								/
-								{{ 10 }}
-							</td>
-							<td>
-								{{ raw.timeshot }}
-							</td>
-							<td>
-								{{ raw.timepenalty }}
-							</td>
-							<td>
-								{{ raw.timeski }}
-							</td>
-							<td>
-								{{ raw.timerun }}
-							</td>
-						</tr>
-					{% endfor %}
+
+						{% endfor %}
+					</tr>
 				</table>
 			{% endif %}
+
 		</main>
 
 	{% endblock %}

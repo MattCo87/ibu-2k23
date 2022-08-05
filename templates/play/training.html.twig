@@ -9,6 +9,39 @@
 			<h1>Centre d'entraînement</h1>
 		</div>
 	</header>
-	<main class="main_center">
+	<main>
+		<section>
+			<div id="menu-tab" class="app_tabs">
+				<div class="tabs">
+					{% set i = 0 %}
+					{% if zone is defined %}
+						{% for varzone in zone %}
+							<div class="tab">
+								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
+								<label for="tab-{{ i }}">
+									<a href="{{ path('app_gozone', {id : varzone.id }) }}" title='{{ varzone.name }}'>
+										{{ varzone.name }}
+									</a>
+								</label>
+							</div>
+							{% set i = i + 1 %}
+						{% endfor %}
+					{% endif %}
+					{% if shot is defined %}
+						{% for varshot in shot %}
+							<div class="tab">
+								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
+								<label for="tab-{{ i }}">
+									<a href="{{ path('app_goshot', {id : varshot.id }) }}" title='{{ varshot.name }}'>
+										{{ varshot.name }}
+									</a>
+								</label>
+							</div>
+							{% set i = i + 1 %}
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</section>
 	</main>
 {% endblock %}
