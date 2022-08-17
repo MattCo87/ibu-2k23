@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Repository\RunRepository;
 use App\Repository\CompetitionRepository;
 use App\Repository\PointRepository;
+use App\Repository\HolidayRepository;
 use App\Entity\Run;
 use App\Entity\User;
+use App\Entity\Holiday;
 use App\Entity\ZStat;
 use App\Repository\ShotRepository;
 use App\Repository\ZoneRepository;
@@ -33,8 +35,9 @@ class PlayController extends AbstractController
     private $emzs;
     private $ema;
     private $emc;
+    private $emh;
 
-    public function __construct(SStatrepository $emss, ZStatrepository $emzs, Security $security, PointRepository $emp, RunRepository $emr, CompetitionRepository $emc, AthleteRepository $ema, ShotRepository $ems, ZoneRepository $emz, EntityManagerInterface $manager)
+    public function __construct(Holidayrepository $emh, SStatrepository $emss, ZStatrepository $emzs, Security $security, PointRepository $emp, RunRepository $emr, CompetitionRepository $emc, AthleteRepository $ema, ShotRepository $ems, ZoneRepository $emz, EntityManagerInterface $manager)
     {
         $this->security = $security;
         $this->emr = $emr;
@@ -45,6 +48,7 @@ class PlayController extends AbstractController
         $this->ema = $ema;
         $this->emc = $emc;
         $this->emp = $emp;
+        $this->emh = $emh;
         $this->manager = $manager;
     }
 
@@ -72,10 +76,13 @@ class PlayController extends AbstractController
     {
         $varzone = $this->emz->findall();
         $varshot = $this->ems->findall();
+        $varholiday = $this->emh->findall();
+
 
         return $this->render('play/training.html.twig', [
             'zone' => $varzone,
             'shot' => $varshot,
+            'holiday' => $varholiday,
         ]);
     }
 
@@ -138,6 +145,23 @@ class PlayController extends AbstractController
             'athlete' => $userAthlete,
         ]);
     }
+
+
+    /**
+     * @Route("/holiday/{id}", name="app_goholiday")
+     */
+
+    public function goholiday($id): Response
+    {
+        $step = $this->emh->find($id);
+        $userAthlete = $this->security->getUser()->getAthlete();
+
+        return $this->render('play/holiday.html.twig', [
+            'step' => $step,
+            'athlete' => $userAthlete,
+        ]);
+    }
+
 
 
     /**

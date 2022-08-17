@@ -58,8 +58,9 @@ class StatFixtures extends Fixture implements OrderedFixtureInterface
                 $astat = new AStat();
 
 
-                //$alea = rand(50, 80);
-                $alea = 50;
+                // Valeur des AStats
+                //$alea = rand(500, 800);
+                $alea = 500;
 
 
                 $astat->setAthlete($athlete)
@@ -91,22 +92,22 @@ class StatFixtures extends Fixture implements OrderedFixtureInterface
         // On ajoute des ZStats
         $tabzstat = [];
         $tabzstat = [
-            ["Plaine", "pla", +2],
-            ["Plaine", "for", -2],
+            ["Plaine", "pla", +200],
+            ["Plaine", "for", -200],
 
-            ["Montagne", "mon", +2],
-            ["Montagne", "for", -3],
+            ["Montagne", "mon", +200],
+            ["Montagne", "for", -300],
 
-            ["Descente", "des", +2],
-            ["Descente", "for", -1],
+            ["Descente", "des", +200],
+            ["Descente", "for", -100],
 
-            ["Mont", "pla", +1],
-            ["Mont", "mon", +1],
-            ["Mont", "for", -2],
+            ["Mont", "pla", +100],
+            ["Mont", "mon", +100],
+            ["Mont", "for", -200],
 
-            ["Vallée", "pla", +1],
-            ["Vallée", "des", +1],
-            ["Vallée", "for", -2],
+            ["Vallée", "pla", +100],
+            ["Vallée", "des", +100],
+            ["Vallée", "for", -200],
         ];
 
         foreach ($tabzstat as list($varzone, $varstat, $value)) {

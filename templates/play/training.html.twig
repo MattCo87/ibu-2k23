@@ -33,7 +33,20 @@
 								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
 								<label for="tab-{{ i }}">
 									<a href="{{ path('app_goshot', {id : varshot.id }) }}" title='{{ varshot.name }}'>
-										{{ varshot.name }}
+										Tir {{ varshot.name }}
+									</a>
+								</label>
+							</div>
+							{% set i = i + 1 %}
+						{% endfor %}
+					{% endif %}
+					{% if holiday is defined %}
+						{% for varholiday in holiday %}
+							<div class="tab">
+								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
+								<label for="tab-{{ i }}">
+									<a href="{{ path('app_goholiday', {id : varholiday.id }) }}" title='{{ varholiday.description }}'>
+										{{ varholiday.description }}
 									</a>
 								</label>
 							</div>

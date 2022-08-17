@@ -71,12 +71,18 @@ class Athlete
      */
     private $aStats;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AHoliday::class, mappedBy="athlete")
+     */
+    private $aHolidays;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->aZones = new ArrayCollection();
         $this->aShots = new ArrayCollection();
         $this->aStats = new ArrayCollection();
+        $this->aHolidays = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -270,6 +276,36 @@ class Athlete
             // set the owning side to null (unless already changed)
             if ($aStat->getAthlete() === $this) {
                 $aStat->setAthlete(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AHoliday>
+     */
+    public function getAHolidays(): Collection
+    {
+        return $this->aHolidays;
+    }
+
+    public function addAHoliday(AHoliday $aHoliday): self
+    {
+        if (!$this->aHolidays->contains($aHoliday)) {
+            $this->aHolidays[] = $aHoliday;
+            $aHoliday->setAthlete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAHoliday(AHoliday $aHoliday): self
+    {
+        if ($this->aHolidays->removeElement($aHoliday)) {
+            // set the owning side to null (unless already changed)
+            if ($aHoliday->getAthlete() === $this) {
+                $aHoliday->setAthlete(null);
             }
         }
 

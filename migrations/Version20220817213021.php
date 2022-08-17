@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220805202306 extends AbstractMigration
+final class Version20220817213021 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,6 +20,7 @@ final class Version20220805202306 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE aholiday (id INT AUTO_INCREMENT NOT NULL, athlete_id INT NOT NULL, holiday_id INT NOT NULL, number INT NOT NULL, INDEX IDX_38951206FE6BCB8B (athlete_id), INDEX IDX_38951206830A3EC0 (holiday_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ashot (id INT AUTO_INCREMENT NOT NULL, athlete_id INT DEFAULT NULL, shot_id INT DEFAULT NULL, shot_success INT NOT NULL, shot_attempt INT NOT NULL, shot_penalty NUMERIC(6, 3) NOT NULL, date_ashot DATETIME NOT NULL, INDEX IDX_E833FE47FE6BCB8B (athlete_id), INDEX IDX_E833FE47C274538A (shot_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE astat (id INT AUTO_INCREMENT NOT NULL, athlete_id INT NOT NULL, stat_id INT NOT NULL, value INT NOT NULL, progress INT NOT NULL, INDEX IDX_638C89DDFE6BCB8B (athlete_id), INDEX IDX_638C89DD9502F0B (stat_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE athlete (id INT AUTO_INCREMENT NOT NULL, gender_id INT NOT NULL, country_id INT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, clt_g2022 VARCHAR(255) DEFAULT NULL, clt_g2023 INT DEFAULT NULL, INDEX IDX_C03B8321708A0E0 (gender_id), INDEX IDX_C03B8321F92F3E70 (country_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -28,6 +29,7 @@ final class Version20220805202306 extends AbstractMigration
         $this->addSql('CREATE TABLE config (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, value VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE country (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, flag VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE gender (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE holiday (id INT AUTO_INCREMENT NOT NULL, description LONGTEXT NOT NULL, way VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE point (id INT AUTO_INCREMENT NOT NULL, number INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE run (id INT AUTO_INCREMENT NOT NULL, stage_id INT DEFAULT NULL, competition_id INT DEFAULT NULL, date_run DATE NOT NULL, hour_run VARCHAR(255) NOT NULL, step_run TINYINT(1) NOT NULL, INDEX IDX_5076A4C02298D193 (stage_id), INDEX IDX_5076A4C07B39D312 (competition_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE run_zone (run_id INT NOT NULL, zone_id INT NOT NULL, INDEX IDX_3C159F2384E3FEC4 (run_id), INDEX IDX_3C159F239F2C3FAB (zone_id), PRIMARY KEY(run_id, zone_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -40,6 +42,8 @@ final class Version20220805202306 extends AbstractMigration
         $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, athlete_id INT DEFAULT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), INDEX IDX_8D93D649FE6BCB8B (athlete_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE zone (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, way VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE zstat (id INT AUTO_INCREMENT NOT NULL, zone_id INT NOT NULL, stat_id INT NOT NULL, value INT NOT NULL, INDEX IDX_74BC2F4E9F2C3FAB (zone_id), INDEX IDX_74BC2F4E9502F0B (stat_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE aholiday ADD CONSTRAINT FK_38951206FE6BCB8B FOREIGN KEY (athlete_id) REFERENCES athlete (id)');
+        $this->addSql('ALTER TABLE aholiday ADD CONSTRAINT FK_38951206830A3EC0 FOREIGN KEY (holiday_id) REFERENCES holiday (id)');
         $this->addSql('ALTER TABLE ashot ADD CONSTRAINT FK_E833FE47FE6BCB8B FOREIGN KEY (athlete_id) REFERENCES athlete (id)');
         $this->addSql('ALTER TABLE ashot ADD CONSTRAINT FK_E833FE47C274538A FOREIGN KEY (shot_id) REFERENCES shot (id)');
         $this->addSql('ALTER TABLE astat ADD CONSTRAINT FK_638C89DDFE6BCB8B FOREIGN KEY (athlete_id) REFERENCES athlete (id)');
@@ -67,6 +71,7 @@ final class Version20220805202306 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE aholiday DROP FOREIGN KEY FK_38951206FE6BCB8B');
         $this->addSql('ALTER TABLE ashot DROP FOREIGN KEY FK_E833FE47FE6BCB8B');
         $this->addSql('ALTER TABLE astat DROP FOREIGN KEY FK_638C89DDFE6BCB8B');
         $this->addSql('ALTER TABLE azone DROP FOREIGN KEY FK_E3DFB6FBFE6BCB8B');
@@ -76,6 +81,7 @@ final class Version20220805202306 extends AbstractMigration
         $this->addSql('ALTER TABLE stage DROP FOREIGN KEY FK_C27C9369F92F3E70');
         $this->addSql('ALTER TABLE athlete DROP FOREIGN KEY FK_C03B8321708A0E0');
         $this->addSql('ALTER TABLE competition DROP FOREIGN KEY FK_B50A2CB1708A0E0');
+        $this->addSql('ALTER TABLE aholiday DROP FOREIGN KEY FK_38951206830A3EC0');
         $this->addSql('ALTER TABLE run_zone DROP FOREIGN KEY FK_3C159F2384E3FEC4');
         $this->addSql('ALTER TABLE run_shot DROP FOREIGN KEY FK_37F9D79F84E3FEC4');
         $this->addSql('ALTER TABLE ashot DROP FOREIGN KEY FK_E833FE47C274538A');
@@ -89,6 +95,7 @@ final class Version20220805202306 extends AbstractMigration
         $this->addSql('ALTER TABLE azone DROP FOREIGN KEY FK_E3DFB6FB9F2C3FAB');
         $this->addSql('ALTER TABLE run_zone DROP FOREIGN KEY FK_3C159F239F2C3FAB');
         $this->addSql('ALTER TABLE zstat DROP FOREIGN KEY FK_74BC2F4E9F2C3FAB');
+        $this->addSql('DROP TABLE aholiday');
         $this->addSql('DROP TABLE ashot');
         $this->addSql('DROP TABLE astat');
         $this->addSql('DROP TABLE athlete');
@@ -97,6 +104,7 @@ final class Version20220805202306 extends AbstractMigration
         $this->addSql('DROP TABLE config');
         $this->addSql('DROP TABLE country');
         $this->addSql('DROP TABLE gender');
+        $this->addSql('DROP TABLE holiday');
         $this->addSql('DROP TABLE point');
         $this->addSql('DROP TABLE run');
         $this->addSql('DROP TABLE run_zone');
