@@ -19,7 +19,7 @@
 							<div class="tab">
 								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
 								<label for="tab-{{ i }}">
-									<a href="{{ path('app_gozone', {id : varzone.id }) }}" title='{{ varzone.name }}'>
+									<a href="{{ path('app_go', {id : varzone.id, Type : 'z' }) }}" title='{{ varzone.name }}'>
 										{{ varzone.name }}
 									</a>
 								</label>
@@ -32,7 +32,7 @@
 							<div class="tab">
 								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
 								<label for="tab-{{ i }}">
-									<a href="{{ path('app_goshot', {id : varshot.id }) }}" title='{{ varshot.name }}'>
+									<a href="{{ path('app_go', {id : varshot.id, Type : 's' }) }}" title='{{ varshot.name }}'>
 										Tir {{ varshot.name }}
 									</a>
 								</label>
@@ -45,7 +45,7 @@
 							<div class="tab">
 								<input type="radio" id="tab-{{ i }}" name="tab-group" data-typeid="{{ i }}">
 								<label for="tab-{{ i }}">
-									<a href="{{ path('app_goholiday', {id : varholiday.id }) }}" title='{{ varholiday.description }}'>
+									<a href="{{ path('app_go', {id : varholiday.id, Type : 'h' }) }}" title='{{ varholiday.description }}'>
 										{{ varholiday.description }}
 									</a>
 								</label>

@@ -18,18 +18,18 @@ class ZoneFixtures extends Fixture implements OrderedFixtureInterface
          */
         $tabzone = [];
         $tabzone = [
-            ["Plaine", "images/way/plaine.png"],
-            ["Montagne", "images/way/montagne.png"],
-            ["Descente", "images/way/descente.png"],
-            ["Mont",  "images/way/mont.png"],
-            ["Vallée", "images/way/vallee.png"],
+            ["Plaine", "images/way/plaine.png", 1000],
+            ["Montagne", "images/way/montagne.png", 2000],
+            ["Descente", "images/way/descente.png", 1000],
+            ["Mont",  "images/way/mont.png", 1500],
+            ["Vallée", "images/way/vallee.png", 1750],
         ];
-        
-        foreach ($tabzone as list($a, $b))
-        {
+
+        foreach ($tabzone as list($a, $b, $c)) {
             $zone = new Zone();
             $zone->setName($a);
             $zone->setWay($b);
+            $zone->setPrice($c);
             $manager->persist($zone);
             $this->addReference($zone->getName(), $zone);
         }

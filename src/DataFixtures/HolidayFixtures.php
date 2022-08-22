@@ -18,16 +18,17 @@ class HolidayFixtures extends Fixture implements OrderedFixtureInterface
          */
         $tabholiday = [];
         $tabholiday = [
-            ["Chadebec", "images/way/chadebec.png"],
-            ["Isola", "images/way/isola.png"],
-            ["Megève", "images/way/megeve.png"],
+            ["Chadebec", "images/way/chadebec.png", 1000],
+            ["Isola", "images/way/isola.png", 2500],
+            ["Megève", "images/way/megeve.png", 4000],
         ];
         
-        foreach ($tabholiday as list($a, $b))
+        foreach ($tabholiday as list($a, $b, $c))
         {
             $holiday = new Holiday();
             $holiday->setDescription($a);
             $holiday->setWay($b);
+            $holiday->setPrice($c);
             $manager->persist($holiday);
             $this->addReference($holiday->getDescription(), $holiday);
         }
@@ -38,6 +39,6 @@ class HolidayFixtures extends Fixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 14;
+        return 13;
     }
 }

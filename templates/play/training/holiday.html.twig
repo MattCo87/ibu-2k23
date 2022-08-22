@@ -1,0 +1,36 @@
+<div>
+	<h1>
+		{{ step.description }}
+	</h1>
+</div>
+<main class="main_center">
+	<section>
+		<div>
+			<img class="app_image" src="{{ asset('assets/styles/' ~ step.way) }}" alt=""/>
+		</div>
+	</section>
+	<section>
+		<div>
+			Prix:
+			{{ step.price }}
+		</div>
+		<div>
+			Athlète:
+			{{ app.user.athlete.id }}
+		</div>
+		<div>
+			Step:
+			{{ step.id }}
+		</div>
+	</section>
+	<section>
+		<div class="app_table">
+			<h2 class="app_button">
+				<a href="{{ path('app_training_OK', {'Athlete': app.user.athlete.id, 'Zone': step.id, 'Type': type}) }}" title="Jouer">
+					Participer
+				</a>
+			</h2>
+		</div>
+	</section>
+
+</main>

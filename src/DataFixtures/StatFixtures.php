@@ -129,6 +129,6 @@ class StatFixtures extends Fixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 13;
+        return 14;
     }
 }

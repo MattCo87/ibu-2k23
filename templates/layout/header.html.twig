@@ -50,7 +50,12 @@
 				</li>
 			{% endif %}
 
-
+				<li>
+					<a href="#" title="#">
+						{{ app.user.purse | number_format(0, '', ' ') }}
+						{{ '€' | trans | capitalize }}
+					</a>
+				</li>
 			<li>
 				<a href="#" {% if 'user' in app.request.get('_route') %} class="active" {% endif %}>{{ app.user.email is not null ? app.user.email : app.user.fullname }}</a>
 

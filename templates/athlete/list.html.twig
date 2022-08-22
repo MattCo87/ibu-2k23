@@ -42,16 +42,20 @@
 						</td>
 
 						<td>
-							<a href="{{ path('app_athlete_profil', {'id': athlete.id}) }}" title="Perso">
-								?
-							</a>
+							<div class="app_button">
+								<a href="{{ path('app_athlete_profil', {'id': athlete.id}) }}" title="Perso">
+									?
+								</a>
+							</div>
 						</td>
 
 						{% if app.user.athlete is empty %}
 							<td>
-								<a href="{{ path('app_athlete_select', {'id': athlete.id}) }}" title="Sélectionner">
-									-->
-								</a>
+								<div class="app_button">
+									<a href="{{ path('app_athlete_select', {'id': athlete.id}) }}" title="Sélectionner">
+										-->
+									</a>
+								</div>
 							</td>
 						{% endif %}
 					</tr>

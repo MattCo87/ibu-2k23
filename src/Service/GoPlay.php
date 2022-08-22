@@ -7,6 +7,7 @@ use App\Entity\Run;
 use App\Repository\RunRepository;
 use App\Repository\PointRepository;
 use App\Repository\ShotRepository;
+use App\Repository\HolidayRepository;
 use App\Repository\CompetitionRepository;
 use App\Repository\ZoneRepository;
 use App\Repository\AthleteRepository;
@@ -20,10 +21,11 @@ class GoPlay extends ServiceEntityRepository
     private $ema;
     private $emc;
     private $emr;
+    private $emh;
     private $emp;
     private $manager;
 
-    function __construct(?PointRepository $emp, ?RunRepository $emr, ?AthleteRepository $ema, ?CompetitionRepository $emc, ?ShotRepository $ems, ?ZoneRepository $emz, EntityManagerInterface $manager)
+    function __construct(?HolidayRepository $emh, ?PointRepository $emp, ?RunRepository $emr, ?AthleteRepository $ema, ?CompetitionRepository $emc, ?ShotRepository $ems, ?ZoneRepository $emz, EntityManagerInterface $manager)
     {
         $this->ems = $ems;
         $this->emz = $emz;
@@ -31,6 +33,7 @@ class GoPlay extends ServiceEntityRepository
         $this->emc = $emc;
         $this->emr = $emr;
         $this->emp = $emp;
+        $this->emh = $emh;
         $this->manager = $manager;
     }
 
@@ -229,5 +232,27 @@ class GoPlay extends ServiceEntityRepository
 
 
         return $competitionId;
+    }
+
+
+
+
+    // Pour faire des entraînements
+
+    public function GoTrain($exo)
+    {
+        if ($exo['Type'] == 'h') {
+            $step = $this->emh->find($exo['Zone']);
+        }
+        if ($exo['Type'] == 's') {
+            $step = $this->ems->find($exo['Zone']);
+        }
+        if ($exo['Type'] == 'z') {
+            $step = $this->emz->find($exo['Zone']);
+        }
+
+        dd($exo, $step);
+
+
     }
 }

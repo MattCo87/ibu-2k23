@@ -44,6 +44,11 @@ class Zone
      */
     private $way;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $price;
+
     public function __construct()
     {
         $this->runs = new ArrayCollection();
@@ -163,6 +168,18 @@ class Zone
     public function setWay(?string $way): self
     {
         $this->way = $way;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

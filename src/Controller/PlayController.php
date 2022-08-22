@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Athlete;
 use App\Repository\RunRepository;
 use App\Repository\CompetitionRepository;
 use App\Repository\PointRepository;
@@ -9,6 +10,7 @@ use App\Repository\HolidayRepository;
 use App\Entity\Run;
 use App\Entity\User;
 use App\Entity\Holiday;
+use App\Entity\Zone;
 use App\Entity\ZStat;
 use App\Repository\ShotRepository;
 use App\Repository\ZoneRepository;
@@ -19,10 +21,12 @@ use App\Service;
 use App\Service\GoPlay;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\GroupBy;
+use Symfony\Flex\Response as FlexResponse;
 
 class PlayController extends AbstractController
 {
@@ -36,6 +40,7 @@ class PlayController extends AbstractController
     private $ema;
     private $emc;
     private $emh;
+
 
     public function __construct(Holidayrepository $emh, SStatrepository $emss, ZStatrepository $emzs, Security $security, PointRepository $emp, RunRepository $emr, CompetitionRepository $emc, AthleteRepository $ema, ShotRepository $ems, ZoneRepository $emz, EntityManagerInterface $manager)
     {
@@ -87,11 +92,16 @@ class PlayController extends AbstractController
     }
 
     /**
-     * @Route("/trainingOK", name="app_training_OK")
+     * @Route("/trainingOK/{Athlete}/{Zone}/{Type}", name="app_training_OK")
      */
 
-    public function trainOK(): Response
+    public function trainOK(Request $request): Response
     {
+        $Exercice = $request->attributes->all();
+
+
+        $play = new GoPlay($this->emh, $this->emp, $this->emr, $this->ema, $this->emc, $this->ems, $this->emz, $this->manager);
+        $result = $play->GoTrain($Exercice);
 
         return $this->render('home/index.html.twig', [
 
@@ -101,64 +111,30 @@ class PlayController extends AbstractController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
-     * @Route("/zone/{id}", name="app_gozone")
+     * @Route("/{Type}/{id}", name="app_go")
      */
 
-    public function gozone($id): Response
+    public function go(Request $request): Response
     {
-        $step = $this->emz->find($id);
-        $userAthlete = $this->security->getUser()->getAthlete();
 
-        //dd($userAthlete);
-        return $this->render('play/zone.html.twig', [
+        $Exercice = $request->attributes->all();
+        $Athlete = $this->ema->find($Exercice['id']);
+
+        if ($Exercice['Type'] == 'h') {
+            $step = $this->emh->find($Exercice['id']);
+        }
+        if ($Exercice['Type'] == 's') {
+            $step = $this->ems->find($Exercice['id']);
+        }
+        if ($Exercice['Type'] == 'z') {
+            $step = $this->emz->find($Exercice['id']);
+        }
+
+        return $this->render('play/training/index.html.twig', [
             'step' => $step,
-            'athlete' => $userAthlete,
-        ]);
-    }
-
-
-    /**
-     * @Route("/shot/{id}", name="app_goshot")
-     */
-
-    public function goshot($id): Response
-    {
-        $step = $this->ems->find($id);
-        $userAthlete = $this->security->getUser()->getAthlete();
-
-        return $this->render('play/shot.html.twig', [
-            'step' => $step,
-            'athlete' => $userAthlete,
-        ]);
-    }
-
-
-    /**
-     * @Route("/holiday/{id}", name="app_goholiday")
-     */
-
-    public function goholiday($id): Response
-    {
-        $step = $this->emh->find($id);
-        $userAthlete = $this->security->getUser()->getAthlete();
-
-        return $this->render('play/holiday.html.twig', [
-            'step' => $step,
-            'athlete' => $userAthlete,
+            'athlete' => $Athlete,
+            'type' => $Exercice['Type'],
         ]);
     }
 

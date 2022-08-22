@@ -25,16 +25,17 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
     {
         $tabuser = [];
         $tabuser = [
-            ["test@gmail.com", "ROLE_ADMIN", "testettestera"],
+            ["test@gmail.com", "ROLE_ADMIN", "testettestera", 100000],
         ];
-        
-        foreach ($tabuser as list($email, $role, $pwd)) {
+
+        foreach ($tabuser as list($email, $role, $pwd, $purse)) {
             $user = new User();
             $password = $this->hasher->hashPassword($user, $pwd);
             $user
                 ->setEmail($email)
                 ->setRoles([$role])
-                ->setPassword($password);
+                ->setPassword($password)
+                ->setPurse($purse);
             $manager->persist($user);
         }
         unset($tabuser, $email, $role, $pwd);

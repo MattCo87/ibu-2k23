@@ -41,6 +41,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $athlete;
 
+    /**
+     * @ORM\Column(type="bigint")
+     */
+    private $purse;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +143,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAthlete(?athlete $athlete): self
     {
         $this->athlete = $athlete;
+
+        return $this;
+    }
+
+    public function getPurse(): ?string
+    {
+        return $this->purse;
+    }
+
+    public function setPurse(string $purse): self
+    {
+        $this->purse = $purse;
 
         return $this;
     }

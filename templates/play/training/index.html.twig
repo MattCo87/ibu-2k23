@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}|-=-| Welcome to IBU2K23 |-=-|
+{% endblock %}
+
+{% block body %}
+	{% if type == 'z' %}
+		{% include './play/training/zone.html.twig' %}
+	{% endif %}
+	{% if type == 's' %}
+		{% include './play/training/shot.html.twig' %}
+	{% endif %}
+	{% if type == 'h' %}
+		{% include './play/training/holiday.html.twig' %}
+	{% endif %}
+{% endblock %}
